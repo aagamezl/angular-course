@@ -1,0 +1,13 @@
+<!-- <p>details works! {{ productId }}</p> -->
+<div class="container">
+  <h1>Product Detail</h1>
+  <div class="product-detail" *ngIf="product">
+    <h2>{{ product.title }}</h2>
+    <p>{{ product.description }}</p>
+    <p>Price: ${{ product.price }}</p>
+    <!-- Add your image slideshow here -->
+    <div *ngFor="let image of product?.images">
+      <img [src]="image" alt="Product Image">
+    </div>
+  </div>
+</div>
