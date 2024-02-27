@@ -1,0 +1,100 @@
+.container {
+  max-width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.product-list {
+  margin-top: 1.875rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.product {
+  width: calc(100% - 1.25rem);
+  /* Adjust the width as needed */
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  /* Border color */
+  border-radius: 8px;
+  /* Rounded corners */
+  overflow: hidden;
+  /* Ensure images don't exceed the card */
+}
+
+.product a {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  padding: 15px;
+  /* Add padding for spacing */
+}
+
+.product img {
+  width: 100%;
+  height: 16.5rem;
+  margin-bottom: 15px;
+  /* Add some space below the image */
+}
+
+.product h2 {
+  margin-top: 0;
+  padding-left: 0.5rem;
+  font-size: 3rem;
+}
+
+.product p {
+  padding: 0.5rem;
+  text-align: justify;
+  font-size: 1.5rem;
+}
+
+.product-price {
+  font-weight: bold;
+}
+
+/* Media queries for different screen sizes */
+@media (min-width: 576px) {
+
+  /* Small devices (landscape phones, 576px and up) */
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+
+  /* Medium devices (tablets, 768px and up) */
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+
+  /* Large devices (desktops, 992px and up) */
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+
+  /* X-Large devices (large desktops, 1200px and up) */
+  .container {
+    max-width: 1140px;
+  }
+
+  .product {
+    width: 31.25rem;
+  }
+}
+
+@media (min-width: 1400px) {
+
+  /* XX-Large devices (larger desktops, 1400px and up) */
+  .container {
+    max-width: 1320px;
+  }
+}
