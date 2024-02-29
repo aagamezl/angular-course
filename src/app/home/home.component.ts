@@ -18,6 +18,13 @@ export class HomeComponent {
   productService: ProductService = inject(ProductService);
 
   constructor() {
-    this.productList = this.productService.getAllProducts();
+  }
+
+  async ngOnInit() {
+    try {
+      this.productList = await this.productService.getAllProducts();
+    } catch (error: any) {
+      alert(error.message)
+    }
   }
 }

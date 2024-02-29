@@ -98,3 +98,21 @@
     max-width: 1320px;
   }
 }
+
+.action-bar {
+  margin-bottom: 20px;
+}
+
+.action-bar button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.action-bar button:hover {
+  background-color: #0056b3;
+}
