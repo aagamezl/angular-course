@@ -16,5 +16,11 @@
       <a class="prev" (click)="prevSlide()">&#10094;</a>
       <a class="next" (click)="nextSlide()">&#10095;</a>
     </div>
+    <div class="details">
+      <p class="details__store">{{ product.stock }} in stock</p>
+      <h2 class="details__title">{{ product.title }}</h2>
+      <p class="details__description">{{ product.description }}</p>
+      <p class="details__price">${{ product.price }}</p>
+    </div>
   </div>
 </div>
