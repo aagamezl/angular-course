@@ -39,6 +39,12 @@ button[type="submit"]:hover {
   background-color: #0056b3;
 }
 
-.ng-invalid {
+textarea.ng-invalid,
+input.ng-invalid {
   border: 1px solid red !important;
+}
+
+textarea.ng-valid,
+input.ng-valid {
+  border: 1px solid green !important;
 }

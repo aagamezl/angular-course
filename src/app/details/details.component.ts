@@ -2,8 +2,9 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
-import { ProductService } from '../product.service';
+import { ProductStore } from '../product.store';
 import { Product } from '../product';
+import { Observable, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-details',
@@ -16,21 +17,26 @@ import { Product } from '../product';
 })
 export class DetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
-  productService = inject(ProductService);
-  product: Product | undefined;
+  productStore = inject(ProductStore);
+  // product: Product | undefined;
+  product$: Observable<Product | undefined> = new Observable<Product>();
   productId = ''
   currentSlide = 0;
 
-  constructor() {
-    // this.productId = this.route.snapshot.params['id'];
-  }
-
   async ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.productId = params['id'];
-    });
+    // this.route.params.subscribe(params => {
+    //   this.productId = params['id'];
 
-    this.product = await this.productService.getProductById(this.productId);
+    //   this.productStore.getProductById(this.productId)
+    // });
+
+    // this.product = await this.productStore.getProductById(this.productId);
+
+    this.product$ = this.route.params.pipe(
+      switchMap(params => {
+        return this.productStore.getProductById(params['id'])
+      })
+    );
 
     // Initialize slideshow
     setInterval(() => {
@@ -39,14 +45,14 @@ export class DetailsComponent {
   }
 
   nextSlide() {
-    if (this.product && this.product.images) {
-      this.currentSlide = (this.currentSlide + 1) % this.product.images.length;
-    }
+    // if (this.product && this.product.images) {
+    //   this.currentSlide = (this.currentSlide + 1) % this.product.images.length;
+    // }
   }
 
   prevSlide() {
-    if (this.product && this.product.images) {
-      this.currentSlide = (this.currentSlide - 1 + this.product.images.length) % this.product.images.length;
-    }
+    // if (this.product && this.product.images) {
+    //   this.currentSlide = (this.currentSlide - 1 + this.product.images.length) % this.product.images.length;
+    // }
   }
 }

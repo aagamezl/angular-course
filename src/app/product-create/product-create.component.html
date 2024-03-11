@@ -1,6 +1,6 @@
 <form [formGroup]="productForm" (submit)="onSubmit()">
   <label>Title</label>
-  <input type="text" formControlName="title"  [class.error]="productForm.get('title')?.invalid && !productForm.get('title')?.touched">
+  <input type="text" formControlName="title">
 
   <label>Description</label>
   <textarea formControlName="description"></textarea>

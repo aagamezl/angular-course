@@ -11,10 +11,10 @@ export class ProductService {
 
   constructor() { }
 
-   async getAllProducts(): Promise<Product[]> {
-     const response = await fetch(environment.backendUrl + '/products')
+  async getAllProducts(): Promise<Product[]> {
+    const response = await fetch(environment.backendUrl + '/products');
 
-     return await response.json();
+    return await response.json();
   }
 
   async getProductById(id: string): Promise<Product | undefined> {
@@ -24,6 +24,12 @@ export class ProductService {
   }
 
   async createProduct(form: FormData) {
-    console.log(form);
+    await fetch(environment.backendUrl + '/products', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(form)
+    });
   }
 }

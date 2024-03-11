@@ -1,11 +1,11 @@
 <div class="container">
-  <!-- <h1>Product List</h1> -->
   <div class="action-bar">
     <button routerLink="/product/create">Create New Product</button>
   </div>
 
   <div class="product-list">
-    <div class="product" *ngFor="let product of products">
+    <!-- <div class="product" *ngFor="let product of products"> -->
+    <div class="product" *ngFor="let product of (products$ | async) as products">
       <img [src]="product.thumbnail" alt="Thumbnail">
       <h2>{{ product.title }}</h2>
       <p>{{ product.description }}</p>

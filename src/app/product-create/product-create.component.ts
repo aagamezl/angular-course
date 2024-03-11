@@ -1,7 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ProductService } from '../product.service';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators
+} from '@angular/forms';
+import { ProductStore } from '../product.store';
+import { Product } from '../product';
 
 @Component({
   selector: 'app-product-create',
@@ -14,7 +20,7 @@ import { ProductService } from '../product.service';
   styleUrl: './product-create.component.css'
 })
 export class ProductCreateComponent {
-  productService = inject(ProductService);
+  productStore = inject(ProductStore);
   form = new FormBuilder()
 
   productForm = this.form.group({
@@ -26,30 +32,48 @@ export class ProductCreateComponent {
     brand: ['', Validators.required],
     category: ['', Validators.required],
     thumbnail: [''],
-    images: this.form.array([]) // For multiple images
+    images: [] // For multiple images
   });
 
   async onSubmit() {
     if (this.productForm.valid) {
-      await this.productService.createProduct(this.convertFormToFormData(this.productForm))
+      try {
+        // desabilitar botón
+        this.productStore
+          .createProduct(this.convertFormToFormData(this.productForm))
+          .subscribe();
+      } catch (error: any) {
+        alert('El servidor no está disponible. Intente más tarde. ' + error.message)
+      } finally {
+        // habilitar botón
+      }
     }
   }
 
-  convertFormToFormData(form: FormGroup): FormData {
-    const formData = new FormData();
+  convertFormToFormData(form: FormGroup) {
+    // const formData = new FormData();
     const formValue = form.getRawValue();
+    return formValue as Product // Cast object to Product
 
-    Object.keys(formValue).forEach(key => {
-      if (key === 'images') {
-        const files = formValue[key];
-        for (const file of files) {
-          formData.append(key, file);
-        }
-      } else {
-        formData.append(key, formValue[key]);
-      }
-    });
+    // Object.keys(formValue).forEach(key => {
+    //   // if (key === 'images') {
+    //   //   const files = formValue[key];
+    //   //   for (const file of files) {
+    //   //     formData.append(key, file);
+    //   //   }
+    //   // } else {
+    //   //   formData.append(key, formValue[key]);
+    //   // }
+    //   if (formValue[key] instanceof FileList) {
+    //     // If the control is a file input, append each file to formData separately
+    //     for (let i = 0; i < formValue[key].length; i++) {
+    //       formData.append(key, formValue[key].item(i));
+    //     }
+    //   } else {
+    //     formData.append(key, formValue[key]);
+    //   }
+    // });
 
-    return formData;
+    // return formData;
   }
 }

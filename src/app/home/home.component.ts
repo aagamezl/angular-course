@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 
 import { ProductListComponent } from '../product-list/product-list.component';
 import { Product } from '../product';
-import { ProductService } from '../product.service';
+import { ProductStore } from '../product.store';
 
 @Component({
   selector: 'app-home',
@@ -15,16 +15,19 @@ import { ProductService } from '../product.service';
 })
 export class HomeComponent {
   productList: Product[] = [];
-  productService: ProductService = inject(ProductService);
+  productService: ProductStore = inject(ProductStore);
 
-  constructor() {
+  constructor(private store: ProductStore) {
   }
 
   async ngOnInit() {
     try {
-      this.productList = await this.productService.getAllProducts();
+      // this.productList = await this.productService.getAllProducts();
+      setTimeout(() => {
+        this.store.getAllProducts();
+      }, 10000)
     } catch (error: any) {
-      alert(error.message)
+      alert('Connection error: ' + error.code);
     }
   }
 }
