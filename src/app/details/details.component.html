@@ -1,10 +1,6 @@
 <!-- <p>details works! {{ productId }}</p> -->
 <div class="container">
-  <h1>Product Detail</h1>
   <div class="product-detail" *ngIf="product">
-    <h2>{{ product.title }}</h2>
-    <p>{{ product.description }}</p>
-    <p>Price: ${{ product.price }}</p>
     <!-- Add your image slideshow here -->
     <div class="slideshow-container">
       <div *ngFor="let image of product.images; let i = index" class="slide"
@@ -15,6 +11,12 @@
       <!-- Next and previous buttons -->
       <a class="prev" (click)="prevSlide()">&#10094;</a>
       <a class="next" (click)="nextSlide()">&#10095;</a>
+    </div>
+    <div class="details">
+      <p class="details__store">{{ product.stock }} in stock</p>
+      <h2 class="details__title">{{ product.title }}</h2>
+      <p class="details__description">{{ product.description }}</p>
+      <p class="details__price">${{ product.price }}</p>
     </div>
   </div>
 </div>
