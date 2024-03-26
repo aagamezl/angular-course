@@ -22,26 +22,13 @@ export class ProductStore extends Store<Product[]> {
     });
   }
 
-  // async getProductById(id: string): Promise<Product | undefined> {
   async getProductById(id: string) {
-    // const response = await fetch(environment.backendUrl + `/products/${id}`)
+    const response = await fetch(environment.backendUrl + `/products/${id}`)
 
-    // return await response.json();
-    this.apiService.getById(this.endpoint, id).subscribe((product) => {
-      this.getState()
-      this.setState(product);
-    });
+    return await response.json();
   }
 
-  // async createProduct(form: FormData) {
   createProduct(form: Product) {
     return this.apiService.create(this.endpoint, form)
-    // await fetch(environment.backendUrl + '/products', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(form)
-    // });
   }
 }

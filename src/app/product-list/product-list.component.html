@@ -1,8 +1,4 @@
 <div class="container">
-  <div class="action-bar">
-    <button routerLink="/product/create">Create New Product</button>
-  </div>
-
   <div class="product-list">
     <!-- <div class="product" *ngFor="let product of products"> -->
     <div class="product" *ngFor="let product of (products$ | async) as products">

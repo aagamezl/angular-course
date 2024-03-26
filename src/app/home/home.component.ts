@@ -23,9 +23,7 @@ export class HomeComponent {
   async ngOnInit() {
     try {
       // this.productList = await this.productService.getAllProducts();
-      setTimeout(() => {
-        this.store.getAllProducts();
-      }, 10000)
+      this.store.getAllProducts();
     } catch (error: any) {
       alert('Connection error: ' + error.code);
     }
