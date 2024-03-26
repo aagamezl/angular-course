@@ -2,9 +2,6 @@
   <h1>Product Detail</h1>
   <!-- <div class="product-detail" *ngIf="product"> -->
   <div class="product-detail" *ngIf="product$ | async as product">
-    <h2>{{ product.title }}</h2>
-    <p>{{ product.description }}</p>
-    <p>Price: ${{ product.price }}</p>
     <!-- Add your image slideshow here -->
     <div class="slideshow-container">
       <div *ngFor="let image of product.images; let i = index" class="slide"

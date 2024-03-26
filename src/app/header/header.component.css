@@ -90,6 +90,10 @@ header.header .options .options__add {
   gap: 0.375rem;
 }
 
+header.header .options {
+  display: flex;
+}
+
 @media (min-width: 0) and (max-width: 575.95px) {
   header.header {
     padding-inline: 1rem;

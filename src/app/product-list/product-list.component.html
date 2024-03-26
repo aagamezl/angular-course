@@ -2,6 +2,7 @@
   <div class="product-list">
     <!-- <div class="product" *ngFor="let product of products"> -->
     <div class="product" *ngFor="let product of (products$ | async) as products">
+      <a [routerLink]="['/details', product.id]"></a>
       <img [src]="product.thumbnail" alt="Thumbnail">
       <h2>{{ product.title }}</h2>
       <p class="product__description">{{ product.description }}</p>
