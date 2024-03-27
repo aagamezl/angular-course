@@ -9,7 +9,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     importProvidersFrom(HttpClientModule),
     provideRouter(routes),
-    // ActivatedRoute,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
